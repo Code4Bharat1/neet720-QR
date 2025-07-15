@@ -1,6 +1,3 @@
 Flask
-flask-cors
-requests
-qrcode
+qrcode[pil]
 Pillow
-waitress

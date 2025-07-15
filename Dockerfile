@@ -1,24 +1,24 @@
-# Use official Python base image
-FROM python:3.11-slim
+# Use a lightweight official Python image
+FROM python:3.10-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for QR image processing
+# Install required system packages (Pillow dependencies)
 RUN apt-get update && apt-get install -y \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgl1-mesa-glx \
+    libjpeg-dev \
+    zlib1g-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application files
+# Copy project files
 COPY . .
 
-# No specific port or command — handled by docker-compose services
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Create the output directories if not present
+RUN mkdir -p output/batch_qr output/student_qr
+
+# Default command (can be overridden by docker-compose)
+CMD ["python", "run_qr.py"]
