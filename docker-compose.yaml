@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: qr-api
-    command: python run_qr.py
     ports:
       - "6002:6002"
     restart: unless-stopped
