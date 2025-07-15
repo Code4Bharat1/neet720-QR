@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: qr-api
     ports:
-      - "6002:6002"
+      - "6003:6003"
     restart: unless-stopped
     volumes:
       - ./output:/app/output
