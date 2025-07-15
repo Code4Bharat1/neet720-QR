@@ -30,6 +30,10 @@ def generate_qr(data_dict, save_path):
     encoded = base64.b64encode(buffer.getvalue()).decode()
     return f"data:image/png;base64,{encoded}"
 
+@app.route("/health", methods=["GET"])
+def health_check():
+    return jsonify({"status": "ok"}), 200
+
 @app.route("/api/generate-qr", methods=["POST"])
 def generate_qr_api():
     qr_images = []
