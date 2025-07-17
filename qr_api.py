@@ -2,11 +2,13 @@ from flask import Flask, request, jsonify
 import qrcode
 from qrcode.constants import ERROR_CORRECT_H
 from PIL import Image
+from flask_cors import CORS
 import os
 import base64
 from io import BytesIO
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000", "http://localhost:3001", "http://localhost:3002","https://admin.neet720.com", "https://neet720.com"])
 
 # Ensure output folders exist
 os.makedirs("output/batch_qr", exist_ok=True)
