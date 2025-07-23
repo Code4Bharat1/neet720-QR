@@ -46,6 +46,7 @@ def generate_qr_api():
         test_name = data["test_name"]
         chapters = data["chapters"]
         subject = data["subject"]
+        student_name = data.get("student_name", "")
         quantity = int(data["quantity"])
 
         if form_type == "batch":
@@ -72,6 +73,7 @@ def generate_qr_api():
                     "test_id": test_id,
                     "test_name": test_name,
                     "chapters": chapters,
+                    "student_name": student_name,
                     "subject": subject
                 }
                 path = f"output/student_qr/{student_id}.png"
